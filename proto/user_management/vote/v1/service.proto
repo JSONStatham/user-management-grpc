@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package user_management.vote.v1;
+
+option go_package = "/pb_user_management";
+
+import "user_management/vote/v1/vote.proto";
+
+service VoteService {
+  rpc Vote(VoteRequest) returns (VoteResponse) {}
+  rpc TotalVotes(TotalVotesRequest) returns (TotalVotesResponse) {}
+}
+
+message VoteRequest {
+  user_management.vote.v1.Vote vote = 1;
+}
+
+message VoteResponse {}
+
+message TotalVotesRequest {
+  string user_id = 1;
+}
+
+message TotalVotesResponse {
+  user_management.vote.v1.TotalVotes total_votes = 1;
+}

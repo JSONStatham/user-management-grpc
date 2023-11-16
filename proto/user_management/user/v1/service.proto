@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package user_management.user.v1;
+
+option go_package = "/pb_user_management";
+
+import "user_management/user/v1/user.proto";
+import "google/protobuf/timestamp.proto";
+
+service UserService {
+  rpc AllUsers(AllUsersRequest) returns (AllUsersResponse) {}
+  rpc UserByID(UserByIDRequest) returns (UserByIDResponse) {}
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+}
+
+message AllUsersRequest {
+  PaginationQuery pagination_query = 1;
+}
+
+message AllUsersResponse {
+  repeated user_management.user.v1.User users = 1;
+}
+
+message PaginationQuery {
+  uint64 size = 1;
+  uint64 page = 2;
+  string order_by = 3;
+}
+
+message UserByIDRequest {
+  string id = 1;
+}
+
+message UserByIDResponse {
+  user_management.user.v1.User user = 1;
+}
+
+message CreateUserRequest {
+  string nickname = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string password = 4;
+  string role = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  optional google.protobuf.Timestamp deleted_at = 8;
+}
+
+message CreateUserResponse {
+  user_management.user.v1.User user = 1;
+}
+
+message UpdateUserRequest {
+  optional string nickname = 1;
+  optional string first_name = 2;
+  optional string last_name = 3;
+  optional string password = 4;
+}
+
+message UpdateUserResponse {}

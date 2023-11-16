@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package user_management.vote.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "/pb_user_management";
+
+message Vote {
+  string id = 1;
+  string user_id = 2;
+  string voter_id = 3;
+  string vote = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message TotalVotes {
+  string user_id = 1;
+  int64 total_votes = 2;
+}
