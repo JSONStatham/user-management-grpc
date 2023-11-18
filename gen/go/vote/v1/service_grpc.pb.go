@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VoteServiceClient interface {
-	Vote(ctx context.Context, in *VoteRequest, opts ...grpc.CallOption) (*VoteResponse, error)
+	Vote(ctx context.Context, in *VoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	TotalVotes(ctx context.Context, in *TotalVotesRequest, opts ...grpc.CallOption) (*TotalVotesResponse, error)
 }
 
@@ -34,8 +35,8 @@ func NewVoteServiceClient(cc grpc.ClientConnInterface) VoteServiceClient {
 	return &voteServiceClient{cc}
 }
 
-func (c *voteServiceClient) Vote(ctx context.Context, in *VoteRequest, opts ...grpc.CallOption) (*VoteResponse, error) {
-	out := new(VoteResponse)
+func (c *voteServiceClient) Vote(ctx context.Context, in *VoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/vote.v1.VoteService/Vote", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -56,7 +57,7 @@ func (c *voteServiceClient) TotalVotes(ctx context.Context, in *TotalVotesReques
 // All implementations must embed UnimplementedVoteServiceServer
 // for forward compatibility
 type VoteServiceServer interface {
-	Vote(context.Context, *VoteRequest) (*VoteResponse, error)
+	Vote(context.Context, *VoteRequest) (*emptypb.Empty, error)
 	TotalVotes(context.Context, *TotalVotesRequest) (*TotalVotesResponse, error)
 	mustEmbedUnimplementedVoteServiceServer()
 }
@@ -65,7 +66,7 @@ type VoteServiceServer interface {
 type UnimplementedVoteServiceServer struct {
 }
 
-func (UnimplementedVoteServiceServer) Vote(context.Context, *VoteRequest) (*VoteResponse, error) {
+func (UnimplementedVoteServiceServer) Vote(context.Context, *VoteRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Vote not implemented")
 }
 func (UnimplementedVoteServiceServer) TotalVotes(context.Context, *TotalVotesRequest) (*TotalVotesResponse, error) {
