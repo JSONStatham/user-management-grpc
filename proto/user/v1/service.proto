@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package user_management.user.v1;
+package user.v1;
 
-option go_package = "/pb_user_management";
+option go_package = "github.com/JSONStatham/user-management-grpc/gen/go/user/v1;pbuserv1";
 
-import "user_management/user/v1/user.proto";
+import "user/v1/user.proto";
 import "google/protobuf/timestamp.proto";
 
 service UserService {
@@ -19,7 +19,7 @@ message AllUsersRequest {
 }
 
 message AllUsersResponse {
-  repeated user_management.user.v1.User users = 1;
+  repeated user.v1.User users = 1;
 }
 
 message PaginationQuery {
@@ -33,7 +33,7 @@ message UserByIDRequest {
 }
 
 message UserByIDResponse {
-  user_management.user.v1.User user = 1;
+  user.v1.User user = 1;
 }
 
 message CreateUserRequest {
@@ -48,7 +48,7 @@ message CreateUserRequest {
 }
 
 message CreateUserResponse {
-  user_management.user.v1.User user = 1;
+  user.v1.User user = 1;
 }
 
 message UpdateUserRequest {

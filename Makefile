@@ -1,15 +1,13 @@
-BUF_VERSION=1.28.0
-
 .PHONY: proto
 proto: clean format gen lint
+
+BUF_VERSION=1.28.0
 
 .PHONY: gen
 gen:
 	@$(GOPATH)/bin/buf generate
-	@for dir in $(CURDIR)/gen/go/*/; do \
-	  cd $$dir && \
-	  go mod init user_management_contracts && go mod tidy; \
-  	done
+	@cd $(CURDIR)/gen/go && \
+	go mod init github.com/JSONStatham/user-management-grpc/gen/go && go mod tidy; \
 
 .PHONY: lint
 lint:

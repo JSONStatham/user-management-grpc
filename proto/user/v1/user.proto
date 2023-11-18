@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package user_management.user.v1;
+package user.v1;
+
+option go_package = "github.com/JSONStatham/user-management-grpc/gen/go/user/v1;pbuserv1";
 
 import "google/protobuf/timestamp.proto";
-
-option go_package = "/pb_user_management";
 
 message User {
   string id = 1;

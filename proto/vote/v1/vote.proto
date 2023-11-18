@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package user_management.vote.v1;
+package vote.v1;
+
+option go_package = "github.com/JSONStatham/user-management-grpc/gen/go/vote/v1;pbuserv1";
 
 import "google/protobuf/timestamp.proto";
-
-option go_package = "/pb_user_management";
 
 message Vote {
   string id = 1;

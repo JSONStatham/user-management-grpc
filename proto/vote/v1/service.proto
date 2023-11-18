@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package user_management.vote.v1;
+package vote.v1;
 
-option go_package = "/pb_user_management";
+option go_package = "github.com/JSONStatham/user-management-grpc/gen/go/vote/v1;pbuserv1";
 
-import "user_management/vote/v1/vote.proto";
+import "vote/v1/vote.proto";
 
 service VoteService {
   rpc Vote(VoteRequest) returns (VoteResponse) {}
@@ -12,7 +12,7 @@ service VoteService {
 }
 
 message VoteRequest {
-  user_management.vote.v1.Vote vote = 1;
+  vote.v1.Vote vote = 1;
 }
 
 message VoteResponse {}
@@ -22,5 +22,5 @@ message TotalVotesRequest {
 }
 
 message TotalVotesResponse {
-  user_management.vote.v1.TotalVotes total_votes = 1;
+  vote.v1.TotalVotes total_votes = 1;
 }
